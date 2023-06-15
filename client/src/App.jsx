@@ -1,3 +1,4 @@
+
 // import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
@@ -11,7 +12,7 @@ import Services from "./pages/Services";
 function App() {
   return (
     <>
-      <BrowserRouter>
+  <BrowserRouter>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
