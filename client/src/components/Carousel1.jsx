@@ -28,10 +28,12 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
 );
 export default class Responsive extends Component {
   render() {
+    const { data } = this.props;
+
     var settings = {
       infinite: false,
       speed: 500,
-      slidesToShow: 5,
+      slidesToShow: 3,
       slidesToScroll: 1,
       prevArrow: <SlickArrowLeft />,
       nextArrow: <SlickArrowRight />,
@@ -65,9 +67,23 @@ export default class Responsive extends Component {
     };
     return (
       <div className="carousel-container">
-        <h2> Recommended </h2>
         <Slider {...settings}>
-          <div>
+          {data &&
+            data.map(({ img, title }, index) => {
+              return (
+                <div
+                  key={index}
+                  className="carousel-three"
+                  style={{ border: "2px solid black" }}
+                >
+                  <div>
+                    <img src={img} alt="" />
+                    <h1>{title}</h1>
+                  </div>
+                </div>
+              );
+            })}
+          {/* <div>
             <h3>1</h3>
           </div>
           <div>
@@ -90,7 +106,7 @@ export default class Responsive extends Component {
           </div>
           <div>
             <h3>8</h3>
-          </div>
+          </div> */}
         </Slider>
       </div>
     );

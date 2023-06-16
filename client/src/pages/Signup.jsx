@@ -9,3 +9,4 @@ const Signup = () => {
 };
 
 export default Signup;
+// home - > category -> single ->
