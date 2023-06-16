@@ -10,6 +10,7 @@ const serviceSchema = new mongoose.Schema({
     ref: "Professional",
     required: true,
   },
+  image: String,
 });
 
 const ServiceModel = mongoose.model("Service", serviceSchema);
