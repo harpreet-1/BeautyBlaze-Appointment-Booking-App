@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const professionalSchema = new mongoose.Schema({
+  bussinessName: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -25,26 +29,8 @@ const professionalSchema = new mongoose.Schema({
     type: String,
   },
   address: {
-    street: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-    zipCode: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: true,
   },
   availability: [
     {
@@ -64,14 +50,9 @@ const professionalSchema = new mongoose.Schema({
   ],
   ratings: [
     {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
+      userId: { type: String },
       rating: {
         type: Number,
-        required: true,
       },
     },
   ],
@@ -94,7 +75,7 @@ const professionalSchema = new mongoose.Schema({
 
 const BeautyProfessionalModel = mongoose.model(
   "BeautyProfessional",
-  beautyProfessionalSchema
+  professionalSchema
 );
 
 module.exports = BeautyProfessionalModel;

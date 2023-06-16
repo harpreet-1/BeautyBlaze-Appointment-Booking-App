@@ -5,6 +5,11 @@ const serviceSchema = new mongoose.Schema({
   description: { type: String },
   duration: { type: Number },
   pricing: { type: Number },
+  professional: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Professional",
+    required: true,
+  },
 });
 
 const ServiceModel = mongoose.model("Service", serviceSchema);
