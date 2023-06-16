@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const sendOtp = require("../Middlewares/sendotp");
+const { sendOtp, generateOtp } = require("../Middlewares/sendotp");
 const UserModel = require("../Models/user");
 const BlacklistModel = require("../Models/blacklist");
 require("dotenv").config();
@@ -11,26 +11,39 @@ const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-
-    const existingUser = await User.findOne({ email });
+    const { name, email, password } = req.body;
+    const otp = generateOtp();
+    const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      return res
-        .status(400)
-        .json({ message: "Email already registered Please Login" });
+      // Checking  email  verified or not--------------
+
+      if (!user.emailVerified) {
+        sendOtp(name, email, otp);
+        user.otp = otp;
+        await user.save();
+        return res.status(201).json({
+          message:
+            "User registered successfully. Please check your email for the OTP.",
+        });
+      } else {
+        return res
+          .status(400)
+          .json({ message: "Email already registered Please Login" });
+      }
     }
 
     const hashedPassword = await bcrypt.hash(password, 5);
 
-    const newUser = new User({
-      username,
+    const newUser = new UserModel({
+      name,
       email,
       password: hashedPassword,
       otp,
+      emailVerified: false,
     });
 
     const savedUser = await newUser.save();
-    sendOtp(username, email);
+    sendOtp(name, email, otp);
     return res.status(201).json({
       message:
         "User registered successfully. Please check your email for the OTP.",
@@ -41,7 +54,27 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+userRouter.post("/verify-otp", async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user || user.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    user.emailVerified = true;
+    await user.save();
+
+    return res.status(200).json({ message: "OTP verified successfully" });
+  } catch (error) {
+    console.error("Error verifying OTP:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -81,7 +114,7 @@ userRouter.get("/profile/", async (req, res) => {
   }
 });
 //------------------- Update User Profile---------------------
-userRouter.patch("/profile", authMiddleware, async (req, res) => {
+userRouter.patch("/profile", async (req, res) => {
   try {
     const userId = req.user._id;
 
@@ -131,7 +164,7 @@ userRouter.patch("/changePassword", async (req, res) => {
 });
 
 // -------------Forgot Password ----with OTP------------------------
-router.post("/forgot-password", async (req, res) => {
+userRouter.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -152,10 +185,8 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-const router = express.Router();
-
 //---------------- Reset Password-------- Verify OTP and Update Password---------------------
-router.patch("/reset-password", async (req, res) => {
+userRouter.patch("/reset-password", async (req, res) => {
   try {
     const { email, otp, newPassword } = req.body;
 
@@ -218,7 +249,7 @@ userRouter.delete("/:id", async (req, res) => {
 
 // -----------------logout user  by  blacklisting------------------
 
-router.post("/logout", async (req, res) => {
+userRouter.post("/logout", async (req, res) => {
   const { token } = req.body;
 
   const newBlacklistedToken = new BlacklistModel({ token });
@@ -228,7 +259,7 @@ router.post("/logout", async (req, res) => {
 });
 
 // -----------------------get all users ----------------------------
-router.get("/users", async (req, res) => {
+userRouter.get("/", async (req, res) => {
   try {
     const users = await UserModel.find();
 
@@ -238,4 +269,5 @@ router.get("/users", async (req, res) => {
     res.status(500).json({ error: "Server Error" });
   }
 });
-module.exports = userRouter;
+
+module.exports = { userRouter };

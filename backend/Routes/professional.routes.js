@@ -21,16 +21,11 @@ professionalRouter.post("/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 5);
-
-    const newUser = new BeautyProfessionalModel({
-      name,
-      email,
-      password: hashedPassword,
-      otp,
-    });
+    req.body.password = hashedPassword;
+    const newUser = new BeautyProfessionalModel(req.body);
 
     const savedUser = await newUser.save();
-    sendOtp(beautyProfessionalname, email);
+    // sendOtp(name, email);
     return res.status(201).json({
       message:
         "beautyProfessional registered successfully. Please check your email for the OTP.",
@@ -41,7 +36,7 @@ professionalRouter.post("/register", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+professionalRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -50,14 +45,21 @@ router.post("/login", async (req, res) => {
       return res.status(404).json({ message: "beautyProfessional not found" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, beautyProfessional.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      beautyProfessional.password
+    );
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ beautyProfessionalId: beautyProfessional._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "7d",
-    });
+    const token = jwt.sign(
+      { beautyProfessionalId: beautyProfessional._id },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "7d",
+      }
+    );
 
     res.json({ token, beautyProfessional });
   } catch (error) {
@@ -69,7 +71,9 @@ router.post("/login", async (req, res) => {
 professionalRouter.get("/profile/", async (req, res) => {
   try {
     const beautyProfessionalId = req.beautyProfessional.id;
-    const beautyProfessional = await BeautyProfessionalModel.findById(beautyProfessionalId);
+    const beautyProfessional = await BeautyProfessionalModel.findById(
+      beautyProfessionalId
+    );
 
     if (!beautyProfessional) {
       return res.status(404).json({ message: "beautyProfessional not found" });
@@ -81,7 +85,7 @@ professionalRouter.get("/profile/", async (req, res) => {
   }
 });
 //------------------- Update beautyProfessional Profile---------------------
-professionalRouter.patch("/profile", authMiddleware, async (req, res) => {
+professionalRouter.patch("/profile", async (req, res) => {
   try {
     const beautyProfessionalId = req.beautyProfessional._id;
 
@@ -101,7 +105,9 @@ professionalRouter.patch("/profile", authMiddleware, async (req, res) => {
 
     res.json(beautyProfessional);
   } catch (error) {
-    res.status(400).json({ error: "Failed to update beautyProfessional profile" });
+    res
+      .status(400)
+      .json({ error: "Failed to update beautyProfessional profile" });
   }
 });
 
@@ -112,12 +118,17 @@ professionalRouter.patch("/changePassword", async (req, res) => {
 
     const { currentPassword, newPassword } = req.body;
 
-    const beautyProfessional = await BeautyProfessionalModel.findById(beautyProfessionalId);
+    const beautyProfessional = await BeautyProfessionalModel.findById(
+      beautyProfessionalId
+    );
 
     if (!beautyProfessional) {
       return res.status(404).json({ error: "beautyProfessional not found" });
     }
-    const isMatch = await bcrypt.compare(currentPassword, beautyProfessional.password);
+    const isMatch = await bcrypt.compare(
+      currentPassword,
+      beautyProfessional.password
+    );
 
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid current password" });
@@ -135,7 +146,7 @@ professionalRouter.patch("/changePassword", async (req, res) => {
 });
 
 // -------------Forgot Password ----with OTP------------------------
-router.post("/forgot-password", async (req, res) => {
+professionalRouter.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -156,10 +167,8 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
-const router = express.Router();
-
 //---------------- Reset Password-------- Verify OTP and Update Password---------------------
-router.patch("/reset-password", async (req, res) => {
+professionalRouter.patch("/reset-password", async (req, res) => {
   try {
     const { email, otp, newPassword } = req.body;
 
@@ -186,11 +195,13 @@ router.patch("/reset-password", async (req, res) => {
 
 // -------------------single beautyProfessional details-------------
 
-professionalRouter.get("/:id", async (req, res) => {
+professionalRouter.get("/single/:id", async (req, res) => {
   try {
     const beautyProfessionalId = req.params.id;
 
-    const beautyProfessional = await BeautyProfessionalModel.findById(beautyProfessionalId);
+    const beautyProfessional = await BeautyProfessionalModel.findById(
+      beautyProfessionalId
+    );
 
     if (!beautyProfessional) {
       return res.status(404).json({ message: "beautyProfessional not found" });
@@ -207,7 +218,9 @@ professionalRouter.get("/:id", async (req, res) => {
 professionalRouter.delete("/:id", async (req, res) => {
   try {
     const beautyProfessionalId = req.params.id;
-    const deletedUser = await beautyProfessional.findByIdAndDelete(beautyProfessionalId);
+    const deletedUser = await beautyProfessional.findByIdAndDelete(
+      beautyProfessionalId
+    );
 
     if (!deletedUser) {
       return res.status(404).json({ message: "beautyProfessional not found" });
@@ -222,7 +235,7 @@ professionalRouter.delete("/:id", async (req, res) => {
 
 // -----------------logout beautyProfessional  by  blacklisting------------------
 
-router.post("/logout", async (req, res) => {
+professionalRouter.post("/logout", async (req, res) => {
   const { token } = req.body;
 
   const newBlacklistedToken = new BlacklistModel({ token });
@@ -232,7 +245,7 @@ router.post("/logout", async (req, res) => {
 });
 
 // -----------------------get all beautyProfessionals ----------------------------
-router.get("/beautyProfessionals", async (req, res) => {
+professionalRouter.get("/data", async (req, res) => {
   try {
     const beautyProfessionals = await BeautyProfessionalModel.find();
 

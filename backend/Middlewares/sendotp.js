@@ -6,18 +6,18 @@ function generateOtp() {
   return otp;
 }
 
-async function sendOtp(name, email) {
+async function sendOtp(name, email, otp) {
   otp = generateOtp();
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.NODEMAILER_EMAIL, // Your Gmail email address
-      pass: process.env.NODEMAILER_PASS, // Your Gmail password
+      user: process.env.NODEMAILER_EMAIL,
+      pass: process.env.NODEMAILER_PASS,
     },
   });
 
   const maildetail = await transporter.sendMail({
-    to: "moyer32584@anomgo.com",
+    to: email,
     subject: "Your OTP for account verification",
     text: `Subject: Welcome to BeautyBlaze! Please Verify Your Email
 
@@ -29,8 +29,7 @@ async function sendOtp(name, email) {
 
     OTP: ${otp}
 
-    At BeautyBlaze, we're dedicated to connecting you with top-notch beauty professionals and providing a seamless booking experience. By verifying your email, you'll have access to a wide range of beauty services and exclusive features.
-
+  
     Thank you for choosing BeautyBlaze. We look forward to assisting you in finding the perfect beauty services that suit your needs.
 
     Best regards,
@@ -39,4 +38,4 @@ async function sendOtp(name, email) {
   console.log(maildetail);
 }
 
-module.exports = sendOtp;
+module.exports = { sendOtp, generateOtp };
