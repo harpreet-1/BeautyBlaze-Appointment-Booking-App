@@ -1,12 +1,11 @@
+import "../../Styling/Home.css";
 import React, { useState } from 'react';
 import SignInForm from '../Login/SignInForm';
-import SignUp from '../Login/SignUp';
+import Rolecheck from "../Login/Rolecheck";
 
 const Home = () => {
   const [showSignInPopup, setShowSignInPopup] = useState(false);
   const [showSignUpPopup, setShowSignUpPopup] = useState(false);
-
-
 
   return (
 
@@ -32,10 +31,15 @@ const Home = () => {
                     <span className="close" onClick={() => setShowSignUpPopup(false)}>
                     &times;
                     </span>
-                    <SignUp />
+                    <Rolecheck />
                 </div>
             </div>
         )}
+
+      
+
+        <img src="https://cdn.pixabay.com/photo/2023/06/11/13/14/boathouse-8055954_1280.jpg" alt="" />
+
     </div>
   );
 };
