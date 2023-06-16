@@ -11,14 +11,14 @@ const SignInForm = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body:{email, password}
+      body: JSON.stringify({email, password})
     }).then((res)=>res.json()).then((data)=>alert(data)).catch((err)=>alert(err))
     setEmail('');
     setPassword('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='SignInform' onSubmit={handleSubmit}>
       <label>
         Email:
         <input

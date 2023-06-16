@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  emailVerified: { type: Boolean, require: true, default: false },
   role: {
     type: String,
-    enum: ["customer", "beautyProfessional"],
+    default: "user",
     required: true,
   },
   otp: {
