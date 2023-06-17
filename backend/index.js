@@ -4,6 +4,7 @@ const { connection } = require("./server");
 const { userRouter } = require("./Routes/user.routes");
 const professionalRouter = require("./Routes/professional.routes");
 const serviceRouter = require("./Routes/services.routes");
+const googleRouter = require("./Controllers/google.oauth");
 
 require("dotenv").config();
 
