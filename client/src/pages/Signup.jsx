@@ -1,12 +1,12 @@
 import React from "react";
+import SignupComponent from "../components/signup/SignupComponent";
 
 const Signup = () => {
   return (
-    <div>
-      <p>signup</p>
-    </div>
+    <>
+      <SignupComponent />
+    </>
   );
 };
 
 export default Signup;
-// home - > category -> single ->
