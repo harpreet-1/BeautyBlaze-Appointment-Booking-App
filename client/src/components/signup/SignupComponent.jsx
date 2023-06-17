@@ -65,14 +65,7 @@ function SignupComponent() {
                 />
               )}
             </div>
-            <div className="form-link" style={{ textAlign: "left" }}>
-              <span>
-                <label htmlFor="professional-checkbox">
-                  <input type="checkbox" id="professional-checkbox" />
-                  <span>Register as professional</span>
-                </label>
-              </span>
-            </div>
+
             <div className="field button-field">
               <button>Signup</button>
             </div>
@@ -98,6 +91,13 @@ function SignupComponent() {
             <FcGoogle className="google-icon" />
             <span>Login with Google</span>
           </a>
+        </div>
+        <div className="form-link" style={{ textAlign: "left" }}>
+          <span>
+            <Link to="/professional" className="link login-link">
+              Register as professional
+            </Link>
+          </span>
         </div>
       </div>
     </section>

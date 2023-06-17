@@ -1,4 +1,3 @@
-
 // import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
@@ -8,11 +7,11 @@ import Signup from "./pages/Signup";
 import Payment from "./pages/Payment";
 import Single from "./pages/Single";
 import Services from "./pages/Services";
-
+import Professional from "./pages/Professional";
 function App() {
   return (
     <>
-  <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
@@ -21,6 +20,7 @@ function App() {
             <Route path="/services/:queryName" element={<Services />} />
             <Route path="/single" element={<Single />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/professional" element={<Professional />} />
           </Route>
 
           <Route path="/business">
