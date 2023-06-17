@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const sendOtp = require("../Middlewares/sendotp");
 const BlacklistModel = require("../Models/blacklist");
 const BeautyProfessionalModel = require("../Models/beautyProfessional");
+const professionalAuth = require("../Middlewares/professionalAuth");
 require("dotenv").config();
 const professionalRouter = express.Router();
 
@@ -67,10 +68,15 @@ professionalRouter.post("/login", async (req, res) => {
   }
 });
 
-// ---------------------------beautyProfessional profile--------------------------
+// Auth for all route ---------------------
+
+professionalRouter.use(professionalAuth);
+
+// ------------------------- beautyProfessional  profile  --------------------------
+
 professionalRouter.get("/profile/", async (req, res) => {
   try {
-    const beautyProfessionalId = req.beautyProfessional.id;
+    const beautyProfessionalId = req.professionalID;
     const beautyProfessional = await BeautyProfessionalModel.findById(
       beautyProfessionalId
     );

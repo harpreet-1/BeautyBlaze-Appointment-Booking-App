@@ -14,6 +14,7 @@ app.use(cors());
 app.use("/users", userRouter);
 app.use("/professional", professionalRouter);
 app.use("/services", serviceRouter);
+app.use("/appointment", app);
 
 app.listen(process.env.PORT, () => {
   connection();
