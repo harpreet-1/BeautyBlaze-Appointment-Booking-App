@@ -11,7 +11,7 @@ const authMiddleware = async (req, res, next) => {
     if (isblacklisted) {
       return res.status(400).json({ message: "Invalid Token" });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await UserModel.findById(decoded._id);
 
     if (!user) {

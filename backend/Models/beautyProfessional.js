@@ -32,22 +32,7 @@ const professionalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  availability: [
-    {
-      day: {
-        type: String,
-        required: true,
-      },
-      startTime: {
-        type: String,
-        required: true,
-      },
-      endTime: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+
   ratings: [
     {
       userId: { type: String },
@@ -60,14 +45,12 @@ const professionalSchema = new mongoose.Schema({
     {
       title: {
         type: String,
-        required: true,
       },
       description: {
         type: String,
       },
       imageUrl: {
         type: String,
-        required: true,
       },
     },
   ],
