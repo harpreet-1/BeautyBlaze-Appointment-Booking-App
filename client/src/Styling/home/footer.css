@@ -1,0 +1,34 @@
+footer {
+  background: var(--clr-900);
+  color: var(--clr-200);
+}
+footer > div {
+  width: 96%;
+  margin-inline: auto;
+  padding-bottom: 2rem;
+}
+
+footer > div > div:nth-child(1) {
+  margin-bottom: 2rem;
+}
+footer .socials {
+  gap: 2rem;
+}
+footer .socials img {
+  width: 25px;
+  margin-top: 0.4rem;
+  margin-inline: auto;
+}
+
+footer .socials > div {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #c2c2c2;
+  border-radius: 50%;
+}
+
+footer .fx > div > img {
+  width: 150px;
+  margin-top: 1.2rem;
+  margin-left: 0.758rem;
+}
