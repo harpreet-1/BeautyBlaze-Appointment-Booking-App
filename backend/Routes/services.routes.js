@@ -26,7 +26,7 @@ serviceRouter.post("/add", async (req, res) => {
 });
 
 // Route: Get services with professional details based on search query
-router.get("/services", async (req, res) => {
+serviceRouter.get("/services", async (req, res) => {
   try {
     const { query } = req.query;
 
