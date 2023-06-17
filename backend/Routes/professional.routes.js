@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const sendOtp = require("../Middlewares/sendotp");
+const { sendOtp, generateOtp } = require("../Middlewares/sendotp");
 const BlacklistModel = require("../Models/blacklist");
 const BeautyProfessionalModel = require("../Models/beautyProfessional");
 const professionalAuth = require("../Middlewares/professionalAuth");
@@ -25,8 +25,9 @@ professionalRouter.post("/register", async (req, res) => {
     req.body.password = hashedPassword;
     const newUser = new BeautyProfessionalModel(req.body);
 
+    const otp = generateOtp();
     const savedUser = await newUser.save();
-    // sendOtp(name, email);
+    sendOtp(name, email, otp);
     return res.status(201).json({
       message:
         "beautyProfessional registered successfully. Please check your email for the OTP.",
