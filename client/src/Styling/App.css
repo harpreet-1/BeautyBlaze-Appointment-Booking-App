@@ -238,3 +238,22 @@ body {
     flex-direction: row-reverse;
   }
 }
+
+.dashMain{
+  display: grid;
+  width: 100%;
+  margin: auto;
+  grid-template-columns: repeat(2, 25% 75%);
+  grid-template-rows: repeat(1, 1fr);
+  /* border: 1px solid black; */
+}
+.table{
+  border: 1px solid red;
+  width:  100%;
+}
+.procard{
+  /* border: 1px solid red; */
+  margin: auto;
+  margin-bottom: 10px;
+}
+

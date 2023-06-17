@@ -7,7 +7,10 @@ import Signup from "./pages/Signup";
 import Payment from "./pages/Payment";
 import Single from "./pages/Single";
 import Services from "./pages/Services";
-import Professional from "./pages/Professional";
+import ProfessionalDash from "./pages/ProfessionalDash";
+
+
+
 function App() {
   return (
     <>
@@ -15,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
+            <Route path='/ProfessionalDash' element={<ProfessionalDash />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/services/:queryName" element={<Services />} />

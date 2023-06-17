@@ -8,6 +8,7 @@ const Navbar = () => {
     <div className="main-div">
       <section className="nav">
         <div>
+
           <Link to="/" className="logo">
             BeautyBlaze
           </Link>

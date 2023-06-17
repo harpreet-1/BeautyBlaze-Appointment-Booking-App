@@ -70,21 +70,19 @@ professionalRouter.post("/login", async (req, res) => {
 
 // Auth for all route ---------------------
 
-professionalRouter.use(professionalAuth);
+// professionalRouter.use(professionalAuth);
 
 // ------------------------- beautyProfessional  profile  --------------------------
 
 professionalRouter.get("/profile/", async (req, res) => {
   try {
     const beautyProfessionalId = req.professionalID;
-    const beautyProfessional = await BeautyProfessionalModel.findById(
-      beautyProfessionalId
-    );
+    const beautyProfessional = await BeautyProfessionalModel.find();
 
     if (!beautyProfessional) {
       return res.status(404).json({ message: "beautyProfessional not found" });
     }
-    return res.status(200).json({ beautyProfessional });
+    return res.status(200).json( beautyProfessional );
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
