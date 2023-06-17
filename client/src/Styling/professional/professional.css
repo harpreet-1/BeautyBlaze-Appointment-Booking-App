@@ -1,0 +1,71 @@
+.professional-container {
+  padding-top: 120px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.professional-container > div {
+  max-width: 750px;
+  width: 100%;
+  padding: 15px 30px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 1px 4px 13px -2px rgba(0, 0, 0, 0.14);
+}
+.professional-container > div:nth-child(6) {
+  max-width: 0;
+  width: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.professional-container > div input {
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 10px;
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid#CACACA;
+}
+#imageUpload {
+  border: none;
+}
+
+.professional-container form {
+  display: flex;
+  gap: 20px;
+}
+
+.professional-container form > div {
+  flex: 1;
+}
+
+.fx {
+  display: flex;
+}
+.register-business {
+  border: none;
+  color: #fff;
+
+  background-color: #00a3ad;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 30px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+  max-width: 550px;
+}
+.register-business:hover {
+  background-color: #00a4adb9;
+}
+@media (max-width: 600px) {
+  .professional-container form {
+    flex-direction: column;
+  }
+}
