@@ -1,5 +1,6 @@
-import "../App.css";
+import "../Styling/App.css";
 import Carousel1 from "../components/Carousel1";
+import data2 from "../../db";
 const Home = () => {
   return (
     <>
@@ -18,10 +19,10 @@ const Home = () => {
 
       <main className="main-container">
         <section>
-          <Carousel1 />
+          <Carousel1 data={undefined} />
         </section>
-        <section>
-          <div className="flex-container flex-row-reverse width95 center-div box-shadow1">
+        <section className="location-container">
+          <div>
             <div>
               <img
                 src="https://res.cloudinary.com/dmskljxga/image/upload/v1686826761/mobile-location_epwkvh.svg"
@@ -29,7 +30,7 @@ const Home = () => {
               />
             </div>
             <div>
-              <h1>Turn on location services</h1>
+              <p>Turn on location services</p>
               <p>
                 Get recommendations of great businesses! Turn on location
                 services so we can show you what's nearby.
@@ -51,7 +52,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section>
+        <section className="first-container">
           <div>
             <h1>Find & book an appointment</h1>
             <p>
@@ -64,7 +65,8 @@ const Home = () => {
 
               <button>DOWNLOAD</button>
             </div>
-            <div>
+
+            <div className="first-container__img">
               <img
                 src="https://res.cloudinary.com/dmskljxga/image/upload/v1686827585/customer-app-en.d0ba412_syvyuy.webp"
                 alt=""
@@ -78,7 +80,8 @@ const Home = () => {
               Calendar, Booking, Marketing, and Payments all in one.
             </p>
             <button>Grow My Business</button>
-            <div>
+
+            <div className="first-container__img">
               <img
                 src="https://res.cloudinary.com/dmskljxga/image/upload/v1686827762/biz-app-en.5ad249f_kkxgtn.webp"
                 alt=""
@@ -88,7 +91,7 @@ const Home = () => {
         </section>
 
         <section>
-          <div>
+          <div className="second-container">
             <div>
               <h1>Appointments done better</h1>
               <p>
@@ -117,7 +120,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div>
+          <div className="second-container row-reverse">
             <div>
               <h1>Something come up? We've got you.</h1>
               <p>
@@ -138,7 +141,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div>
+          <div className="second-container">
             <div>
               <h1>Book with the best,near you</h1>
               <p>
@@ -162,7 +165,78 @@ const Home = () => {
             </div>
           </div>
         </section>
+
+        <section className="c">
+          <h1>Recommended for you</h1>
+          <Carousel1 data={data2} />
+        </section>
       </main>
+      <footer>
+        <div>
+          <div className="fx jsb ac">
+            <div className="fx" style={{ gap: "0.75rem" }}>
+              <span>Blog</span>
+              <span>About us</span>
+              <span>FAQ</span>
+              <span>Privacy policy</span>
+              <span>Term of Services</span>
+              <span>Carreers</span>
+              <span>Contacts</span>
+            </div>
+            <div className="fx ac">
+              <div>
+                <img
+                  src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920117/vector12_mt8dse.svg"
+                  alt=""
+                />
+              </div>
+
+              <div>
+                <img
+                  src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920117/vector11_ihu9mv.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div className="fx jsb">
+            <div className="fx ac" style={{ gap: "0.75rem" }}>
+              <h3>Beauty Blaze</h3>
+              <p>&#169; 2023 Beauty Blaze inc. All rights reversed.</p>
+            </div>
+            <div className="fx socials">
+              <div>
+                <a href="">
+                  <img
+                    src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920399/vector_gdwuzy.svg"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div>
+                <a href="">
+                  <img
+                    src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920280/vector3_h2zqk6.svg"
+                    alt=""
+                  />
+                </a>
+              </div>
+              <div>
+                <a
+                  href="
+              "
+                >
+                  <img
+                    src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920280/vector2_mbxrsi.svg"
+                    alt=""
+                    style={{ color: "white" }}
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };
