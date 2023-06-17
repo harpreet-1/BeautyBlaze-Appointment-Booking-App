@@ -26,9 +26,18 @@ footer .socials > div {
   background-color: #c2c2c2;
   border-radius: 50%;
 }
-
-footer .fx > div > img {
+.fx-footer {
+  display: flex;
+}
+footer .fx-footer > div > img {
   width: 150px;
   margin-top: 1.2rem;
   margin-left: 0.758rem;
+}
+
+@media (max-width: 970px) {
+  .fx-footer {
+    flex-wrap: wrap;
+    margin-left: 10px;
+  }
 }

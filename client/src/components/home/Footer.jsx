@@ -5,17 +5,19 @@ export default function Footer() {
     <>
       <footer>
         <div>
-          <div className="fx jsb ac">
-            <div className="fx" style={{ gap: "0.75rem" }}>
-              <span>Blog</span>
-              <span>About us</span>
-              <span>FAQ</span>
-              <span>Privacy policy</span>
-              <span>Term of Services</span>
-              <span>Carreers</span>
-              <span>Contacts</span>
+          <div className="fx-footer jsb ac">
+            <div className="fx-footer">
+              <div className="fx-footer" style={{ gap: "0.75rem" }}>
+                <span>Blog</span>
+                <span>About us</span>
+                <span>FAQ</span>
+                <span>Privacy policy</span>
+                <span>Term of Services</span>
+                <span>Carreers</span>
+                <span>Contacts</span>
+              </div>
             </div>
-            <div className="fx ac">
+            <div className="fx-footer ac">
               <div>
                 <img
                   src="https://res.cloudinary.com/dmskljxga/image/upload/v1686920117/vector12_mt8dse.svg"
@@ -31,12 +33,12 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="fx jsb">
-            <div className="fx ac" style={{ gap: "0.75rem" }}>
+          <div className="fx-footer jsb">
+            <div className="fx-footer ac" style={{ gap: "0.75rem" }}>
               <h3>Beauty Blaze</h3>
               <p>&#169; 2023 Beauty Blaze inc. All rights reversed.</p>
             </div>
-            <div className="fx socials">
+            <div className="fx-footer socials">
               <div>
                 <a href="">
                   <img

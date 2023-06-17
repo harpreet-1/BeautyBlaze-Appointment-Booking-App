@@ -6,14 +6,13 @@ import { Link } from "react-router-dom";
 import "../../Styling/login/login.css";
 
 function LoginComponent() {
-  const [showSignup, setShowSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <section className={`container forms ${showSignup ? "show-signup" : ""}`}>
+    <section className="container forms">
       <div className="form login">
         <div className="form-content">
           <header>Welcome back</header>
