@@ -1,5 +1,4 @@
 import "../Styling/App.css";
-import Footer from "../components/home/Footer";
 import Main from "../components/home/Main";
 const Home = () => {
   return (
