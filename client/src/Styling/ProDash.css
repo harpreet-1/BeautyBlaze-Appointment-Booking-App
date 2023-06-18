@@ -1,9 +1,10 @@
 .bodyDiv{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2,25% 75%);
 }
 .dashMain{
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
     width: 100%;
     margin: auto;
     /* grid-template-columns: repeat(2, 25% 75%);
@@ -12,8 +13,8 @@
   }
   .DashCorosal{
     border: 1px solid red;
-    width: 800px;
   }
+ 
   .table{
     
     width:  100%;
