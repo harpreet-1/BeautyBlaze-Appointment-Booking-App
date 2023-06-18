@@ -19,7 +19,7 @@ function App() {
             <Route path="/ProfessionalDash" element={<ProfessionalDash />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/services/:queryName" element={<Services />} />
+            <Route path="/services/:q?" element={<Services />} />
             <Route path="/single" element={<Single />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/professional" element={<Professional />} />

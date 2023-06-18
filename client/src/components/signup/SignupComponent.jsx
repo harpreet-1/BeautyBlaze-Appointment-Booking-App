@@ -3,17 +3,29 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-// import "../../Styling/login/login.css";
+import ErrorToast from "../toast/ErrorToast";
 
-function SignupComponent() {
+function SignupComponent({ userData, setUserData }) {
   const [showPasswordOne, setShowPasswordOne] = useState(false);
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+
   const handlePasswordToggleOne = () => {
     setShowPasswordOne(!showPasswordOne);
   };
 
   const handlePasswordToggleTwo = () => {
     setShowPasswordTwo(!showPasswordTwo);
+  };
+  const handleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+  const handleSignup = (e) => {
+    e.preventDefault();
+    if (userData.password !== userData.confirmPassword) {
+      setPasswordMismatch(true);
+    } else {
+    }
   };
 
   return (
@@ -23,13 +35,30 @@ function SignupComponent() {
           <header>Create an Account</header>
           <form action="#">
             <div className="field input-field">
-              <input type="email" placeholder="Email" className="input" />
+              <input
+                type="text"
+                placeholder="name"
+                className="input"
+                name="name"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="field input-field">
+              <input
+                type="email"
+                placeholder="Email"
+                className="input"
+                name="email"
+                onChange={(e) => handleChange(e)}
+              />
             </div>
             <div className="field input-field">
               <input
                 type={showPasswordOne ? "text" : "password"}
                 placeholder="Create password"
                 className="password"
+                name="password"
+                onChange={(e) => handleChange(e)}
               />
               {showPasswordOne ? (
                 <IoEyeOffOutline
@@ -50,6 +79,8 @@ function SignupComponent() {
                 type={showPasswordTwo ? "text" : "password"}
                 placeholder="Confirm password"
                 className="password"
+                name="confirmPassword"
+                onChange={(e) => handleChange(e)}
               />
               {showPasswordTwo ? (
                 <IoEyeOffOutline
@@ -67,7 +98,7 @@ function SignupComponent() {
             </div>
 
             <div className="field button-field">
-              <button>Signup</button>
+              <button onClick={(e) => handleSignup(e)}>Signup</button>
             </div>
           </form>
           <div className="form-link">
@@ -100,6 +131,7 @@ function SignupComponent() {
           </span>
         </div>
       </div>
+      {passwordMismatch && <ErrorToast message={"password do not match!"} />}
     </section>
   );
 }
