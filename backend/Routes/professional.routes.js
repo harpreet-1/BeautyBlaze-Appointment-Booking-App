@@ -26,8 +26,9 @@ professionalRouter.post("/register", async (req, res) => {
     const newUser = new BeautyProfessionalModel(req.body);
 
     const otp = generateOtp();
+    newUser.otp = otp;
     const savedUser = await newUser.save();
-    sendOtp(name, email, otp);
+    // sendOtp(name, email, otp);
     return res.status(201).json({
       message:
         "beautyProfessional registered successfully. Please check your email for the OTP.",
@@ -45,6 +46,15 @@ professionalRouter.post("/login", async (req, res) => {
     const beautyProfessional = await BeautyProfessionalModel.findOne({ email });
     if (!beautyProfessional) {
       return res.status(404).json({ message: "beautyProfessional not found" });
+    }
+    const otp = generateOtp();
+    if (!beautyProfessional.emailVerified) {
+      sendOtp(beautyProfessional.name, email, otp);
+      beautyProfessional.otp = otp;
+      await beautyProfessional.save();
+      return res.status(201).json({
+        message: "Please check your email for the OTP  for Email verification.",
+      });
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -66,6 +76,26 @@ professionalRouter.post("/login", async (req, res) => {
     res.json({ token, beautyProfessional });
   } catch (error) {
     res.status(500).json({ message: "An error occurred" });
+  }
+});
+
+professionalRouter.post("/verify-otp", async (req, res) => {
+  const { email, otp } = req.body;
+
+  try {
+    const beautyProfessional = await BeautyProfessionalModel.findOne({ email });
+
+    if (!beautyProfessional || beautyProfessional.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    beautyProfessional.emailVerified = true;
+    await user.save();
+
+    return res.status(200).json({ message: "OTP verified successfully" });
+  } catch (error) {
+    console.error("Error verifying OTP:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
