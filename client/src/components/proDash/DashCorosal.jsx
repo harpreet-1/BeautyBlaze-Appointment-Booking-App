@@ -29,6 +29,7 @@ function DashCorosal() {
     }, [])
 
   return ( loading || 
+    <div className='DashCorosal'>
     <Carousel>
       <Carousel.Item>
         <img
@@ -54,6 +55,7 @@ function DashCorosal() {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
+    </div>
   );
 }
 
