@@ -5,7 +5,7 @@ import Table from "../components/proDash/Table";
 
 export default function ProfessionalDash(){
   return <div>
-    {/* <DashCorosal /> */}
+    <DashCorosal />
     <div className="dashMain">
       <Procard/>
       <Table />

@@ -7,8 +7,9 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   beautyProfessionalID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "BeautyProfessional",
+    type: String,
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: "BeautyProfessional",
     required: true,
   },
 

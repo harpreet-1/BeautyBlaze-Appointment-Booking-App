@@ -16,11 +16,21 @@ function Procard() {
     };
 
     useEffect(()=>{
-        fetch(`http://localhost:7700/professional/profile`)
+
+      // dynamic token- coming from login page
+      let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJiZWF1dHlQcm9mZXNzaW9uYWxJZCI6IjY0OGVmMTg0ZjIwNTJlYTNkY2I2ZjIwNCIsImlhdCI6MTY4NzA5MjQ5OSwiZXhwIjoxNjg3Njk3Mjk5fQ.zdftj1h5VjUlmLt-PZh4-bxS0PtlDSpsLghyA8huHeo";
+
+        fetch(`http://localhost:7700/professional/profile`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        })
         .then((res)=>res.json())
         .then((data)=>{
-          console.log(data)
-          setfetchdata(data[0])
+          // console.log(data)
+          setfetchdata(data)
         })
         .catch((err)=>console.log(err))
     }, [])
@@ -31,7 +41,7 @@ function Procard() {
         <Card.Img variant="top" src="" />
         <Card.Body id='card'>
           {
-            (fetchData) ? <div><img src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+            (fetchData) ? <div><img src={fetchData.image} alt="" />
             <h1>{fetchData.name}</h1>
             <h4>{fetchData.bussinessName}</h4>
 

@@ -1,6 +1,7 @@
 .main-div {
   width: 100%;
-  position: fixed;
+  position: sticky;
+  top: 0px;
   z-index: 2;
   background: #1b1d21;
   min-height: 140px;

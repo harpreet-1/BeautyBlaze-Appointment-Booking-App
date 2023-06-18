@@ -43,7 +43,7 @@ apoointmentRouter.get("/", async (req, res) => {
     const professionalID = req.professionalID;
 
     const appointments = await AppointmentModel.find({
-      beautyProfessionalID: professionalID,
+      beautyProfessionalID: "648e95f137b1838d156af177",
     })
       .sort({ date: 1, time: 1 })
       .populate("customerID")
@@ -78,5 +78,6 @@ apoointmentRouter.put("/status/:appointmentID", async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
 
 module.exports = apoointmentRouter;

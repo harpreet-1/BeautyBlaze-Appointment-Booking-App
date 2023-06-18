@@ -24,7 +24,7 @@ function App() {
             <Route path="/services/:queryName" element={<Services />} />
             <Route path="/single" element={<Single />} />
             <Route path="/payment" element={<Payment />} />
-            <Route path="/professional" element={<Professional />} />
+            {/* <Route path="/professional" element={<Professional />} /> */}
           </Route>
 
           <Route path="/business">
