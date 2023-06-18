@@ -101,14 +101,14 @@ professionalRouter.post("/verify-otp", async (req, res) => {
 
 // Auth for all route ---------------------
 
-// professionalRouter.use(professionalAuth);
+professionalRouter.use(professionalAuth);
 
 // ------------------------- beautyProfessional  profile  --------------------------
 
 professionalRouter.get("/profile/", async (req, res) => {
   try {
     const beautyProfessionalId = req.professionalID;
-    const beautyProfessional = await BeautyProfessionalModel.find();
+    const beautyProfessional = await BeautyProfessionalModel.findById(beautyProfessionalId);
 
     if (!beautyProfessional) {
       return res.status(404).json({ message: "beautyProfessional not found" });

@@ -240,17 +240,3 @@ body {
   }
 }
 
-.dashMain {
-  display: grid;
-  width: 100%;
-  margin: auto;
-  grid-template-columns: repeat(2, 25% 75%);
-  grid-template-rows: repeat(1, 1fr);
-}
-.table {
-  width: 100%;
-}
-.procard {
-  margin: auto;
-  margin-bottom: 10px;
-}
