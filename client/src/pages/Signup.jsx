@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import SignupComponent from "../components/signup/SignupComponent";
 
 const Signup = () => {
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   return (
     <>
-      <SignupComponent />
+      <SignupComponent userData={userData} setUserData={setUserData} />
     </>
   );
 };
