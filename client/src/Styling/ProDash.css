@@ -1,3 +1,4 @@
+
 .bodyDiv{
     display: grid;
     grid-template-columns: repeat(2,25% 75%);
@@ -75,3 +76,4 @@
       grid-template-rows: repeat(3);
     }
   }
+

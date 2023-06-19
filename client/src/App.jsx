@@ -20,9 +20,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/services/:q?" element={<Services />} />
-            <Route path="/single" element={<Single />} />
+            <Route path="/single/:id/:professionalId" element={<Single />} />
             <Route path="/payment" element={<Payment />} />
-            {/* <Route path="/professional" element={<Professional />} /> */}
+            <Route path="/professional" element={<Professional />} />
           </Route>
 
           <Route path="/business">

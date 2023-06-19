@@ -4,12 +4,17 @@ import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import ErrorToast from "../toast/ErrorToast";
-
+import SuccessToast from "../toast/SuccessToast";
+import { signup } from "../../../db";
+const url = "https://pear-splendid-bee.cyclic.app/users/register";
 function SignupComponent({ userData, setUserData }) {
   const [showPasswordOne, setShowPasswordOne] = useState(false);
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-
+  const [success, setSuccess] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
+  const [successKey, setSuccessKey] = useState(0);
+  const [ifUserExists, setIfUserExists] = useState(false);
   const handlePasswordToggleOne = () => {
     setShowPasswordOne(!showPasswordOne);
   };
@@ -17,15 +22,34 @@ function SignupComponent({ userData, setUserData }) {
   const handlePasswordToggleTwo = () => {
     setShowPasswordTwo(!showPasswordTwo);
   };
+
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-  const handleSignup = (e) => {
+
+  const handleSignup = async (e) => {
     e.preventDefault();
+    setPasswordMismatch(false);
+    setSuccess(false);
+    setIfUserExists(false);
     if (userData.password !== userData.confirmPassword) {
       setPasswordMismatch(true);
     } else {
+      try {
+        const { confirmPassword, ...actualData } = userData;
+        const data = await signup(url, actualData);
+        console.log(data);
+        if (data.message.includes("registered successfully")) {
+          setSuccess(true);
+        } else if (data.message.includes("Email already registered")) {
+          setIfUserExists(true);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
+    setToastKey((prevKey) => prevKey + 1);
+    setSuccessKey((prevKey) => prevKey + 1);
   };
 
   return (
@@ -131,7 +155,15 @@ function SignupComponent({ userData, setUserData }) {
           </span>
         </div>
       </div>
-      {passwordMismatch && <ErrorToast message={"password do not match!"} />}
+      {passwordMismatch && (
+        <ErrorToast key={toastKey} message={"password do not match!"} />
+      )}
+      {success && (
+        <SuccessToast key={successKey} message={"registered successfully!"} />
+      )}
+      {ifUserExists && (
+        <ErrorToast key={toastKey} message={"User already registered!"} />
+      )}
     </section>
   );
 }

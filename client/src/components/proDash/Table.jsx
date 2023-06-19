@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react"
-
-
+import React, { useState, useEffect } from "react";
 
 export default function Table() {
     const [fetchedData, setFetchedData] = useState([]);
@@ -18,24 +16,7 @@ export default function Table() {
         }
     };
 
-    function handleStatus(e, index){
-        fetch(`http://localhost:7700/appointment/status/${fetchedData[index]._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({status: e.target.value})
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data)
-                setFetchedData([...fetchedData], fetchedData[index].status=e.target.value)
-            })
-            .catch((err) => console.log(err))
-    }
-
-
-    useEffect(() => {
+ useEffect(() => {
         fetch(`http://localhost:7700/appointment/`)
             .then((res) => res.json())
             .then((data) => {
@@ -107,8 +88,5 @@ export default function Table() {
             }
         </div>
     )
+
 }
-
-
-
-

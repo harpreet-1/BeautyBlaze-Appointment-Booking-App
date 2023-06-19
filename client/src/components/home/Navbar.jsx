@@ -3,7 +3,17 @@ import { BsSearch } from "react-icons/bs";
 import { RxAvatar } from "react-icons/rx";
 import { FaUserPlus } from "react-icons/fa";
 import "../../Styling/navbar.css";
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const navigation = useNavigate();
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      navigation(`/services?q=${event.target.value}`);
+    }
+  };
+
   return (
     <div className="main-div">
       <section className="nav">
@@ -15,7 +25,13 @@ const Navbar = () => {
 
         <div>
           <BsSearch style={{ marginLeft: "5px" }} />
-          <input type="text" placeholder="what are you looking for ?" />
+
+          <input
+            type="text"
+            placeholder="what are you looking for ?"
+            // onChange={handleChange}
+            onKeyDown={handleKeyPress}
+          />
         </div>
         <div>
           <ul>
