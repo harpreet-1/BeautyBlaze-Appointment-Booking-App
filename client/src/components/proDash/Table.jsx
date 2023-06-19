@@ -48,6 +48,9 @@ export default function Table() {
 
     return (
         <div className="table">
+            {
+                loading ?
+            
             <table>
                 <thead>
                     <tr>
@@ -59,10 +62,10 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    {  
                         fetchedData.map((el, index) => {
 
-                            return ( loading ||
+                            return (
                                 <React.Fragment key={index}>
                                     <tr key={el._id}>
                                         <td>{el.customerID.name}</td>
@@ -96,10 +99,12 @@ export default function Table() {
                                 </React.Fragment>
 
                             )
-                        })
+                        }) 
                     }
                 </tbody>
-            </table>
+            </table>  : <h1>No Appointments</h1>
+
+            }
         </div>
     )
 }
