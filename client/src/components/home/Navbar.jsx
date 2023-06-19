@@ -8,7 +8,6 @@ const Navbar = () => {
     <div className="main-div">
       <section className="nav">
         <div>
-
           <Link to="/" className="logo">
             BeautyBlaze
           </Link>
@@ -37,15 +36,15 @@ const Navbar = () => {
         </div>
       </section>
       <section className="nav categories">
-        <Link>Hair Salon</Link>
-        <Link>Barbershop</Link>
-        <Link>Nail Salon</Link>
-        <Link>Skin Care</Link>
-        <Link> Eyebrows & Lashes</Link>
-        <Link>Message</Link>
-        <Link>Makeup Artist</Link>
-        <Link>Day Spa</Link>
-        <Link>More...</Link>
+        <Link to="/services?q=hair">Hair Salon</Link>
+        <Link to="/services?q=barber">Barbershop</Link>
+        <Link to="/services?q=nail">Nail Salon</Link>
+        <Link to="/services?q=skin">Skin Care</Link>
+        <Link to="/services?q=eyebrows"> Eyebrows & Lashes</Link>
+        <Link to="/services?q=message">Message</Link>
+        <Link to="/services?q=makeup">Makeup Artist</Link>
+        <Link to="/services?q=spa">Day Spa</Link>
+        <Link to="/services?q=more">More...</Link>
       </section>
     </div>
   );
