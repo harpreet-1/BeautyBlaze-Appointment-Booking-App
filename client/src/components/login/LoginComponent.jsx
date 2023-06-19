@@ -3,13 +3,36 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import ErrorToast from "../toast/ErrorToast";
+// import SuccessToast from "../toast/SuccessToast";
+import { signup } from "../../../db";
 import "../../Styling/login/login.css";
+const url = "https://pear-splendid-bee.cyclic.app/users/login";
 
-function LoginComponent() {
+function LoginComponent({ userData, setUserData }) {
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigation = useNavigate();
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
+  };
+  const handleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await signup(url, userData);
+      console.log(data);
+      localStorage.setItem("id", JSON.stringify(data.user._id));
+      if (data.token) {
+        navigation("/");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   return (
     <section className="container forms">
@@ -18,13 +41,23 @@ function LoginComponent() {
           <header>Welcome back</header>
           <form action="#">
             <div className="field input-field">
-              <input type="email" placeholder="Email" className="input" />
+              <input
+                type="email"
+                placeholder="Email"
+                className="input"
+                name="email"
+                value={userData.email}
+                onChange={(e) => handleChange(e)}
+              />
             </div>
             <div className="field input-field">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 className="password"
+                name="password"
+                value={userData.password}
+                onChange={(e) => handleChange(e)}
               />
               {showPassword ? (
                 <IoEyeOffOutline
@@ -53,7 +86,7 @@ function LoginComponent() {
             </div>
 
             <div className="field button-field">
-              <button>Login</button>
+              <button onClick={(e) => handleLogin(e)}>Login</button>
             </div>
           </form>
           <div className="form-link">

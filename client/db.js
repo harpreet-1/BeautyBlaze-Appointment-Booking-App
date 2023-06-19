@@ -1,4 +1,4 @@
-let data2 = [
+export const data2 = [
   {
     img: "https://bks-prd-5-global-wp-new-blog.storage.googleapis.com/wp-content/uploads/2023/03/15085347/fade-cover-1-768x509.jpg",
     title: "What is A Fade Haircut",
@@ -46,4 +46,31 @@ let data2 = [
   },
 ];
 
-export default data2;
+export async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+export async function signup(url, userData) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}

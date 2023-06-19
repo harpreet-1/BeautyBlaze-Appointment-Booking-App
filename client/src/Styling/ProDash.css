@@ -1,71 +1,69 @@
-.bodyDiv{
-    display: flex;
+.bodyDiv {
+  display: flex;
 }
-.dashMain{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: auto;
-    /* grid-template-columns: repeat(2, 25% 75%);
+.dashMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  /* grid-template-columns: repeat(2, 25% 75%);
     grid-template-rows: repeat(2, 1fr); */
-    /* border: 1px solid black; */
-  }
-  .DashCorosal{
-    border: 1px solid red;
-    width: 800px;
-  }
-  .table{
+  /* border: 1px solid black; */
+}
+.DashCorosal {
+  border: 1px solid red;
+  width: 800px;
+}
+.table {
+  width: 100%;
+  /* border: 1px solid red; */
+  max-height: 1020px; /* Set the desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-top: 35px;
+}
+.table table {
+  width: 100%;
+}
+.table table thead {
+  height: 60px;
+  text-align: center;
+}
+.table table tbody tr {
+  height: 50px;
+  text-align: center;
+}
+.table #statusBox {
+  width: 100px;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  padding-left: 11px;
+}
+/* .table button{
     
-    width:  100%;
-    /* border: 1px solid red; */
-    max-height: 1020px; /* Set the desired height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    margin-top: 35px;
-  }
-  .table table{
-    width:  100%;
-  }
-  .table table thead{
-    height: 60px;
-    text-align: center;
-  }
-  .table table tbody tr{
-    height: 50px;
-    text-align: center;
-  }
-  .table #statusBox{
-    width: 100px;
-    margin: auto;
-    margin-top: 10px;
-    border-radius: 10px;
-    font-weight:500;
-    padding-left: 11px;
-  }
-  .table button{
-    
-  }
-  
-  .table .completed{
-    background-color: green;
-    color: white;
-  }
-  .table .pending{
-    background-color: yellow;
-  }
-  .table .cancelled{
-    background-color: red;
-    color: white;
-  }
-  .procard{
-    /* border: 1px solid red; */
-    /* grid-column-start: 0;
+  } */
+
+.table .completed {
+  background-color: green;
+  color: white;
+}
+.table .pending {
+  background-color: yellow;
+}
+.table .cancelled {
+  background-color: red;
+  color: white;
+}
+.procard {
+  /* border: 1px solid red; */
+  /* grid-column-start: 0;
     grid-column-end: 1;
     grid-row-start: 0;
     grid-row-end: 2; */
-    margin: auto;
-    margin-bottom: 10px;
-    margin-top: 30px;
-  }
-  @media (min-width: 35em) {
-    
-  }
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+@media (min-width: 35em) {
+}

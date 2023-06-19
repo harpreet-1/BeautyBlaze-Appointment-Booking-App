@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel1 from "../Carousel1";
-import data2 from "../../../db";
+import { data2 } from "../../../db";
 function Main() {
   return (
     <>

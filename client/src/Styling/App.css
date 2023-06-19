@@ -196,7 +196,7 @@ body {
   flex: 1;
 }
 .second-container h1 {
-  font-size: var(--fs--400);
+  font-size: var(--fs--300);
 }
 .second-container > div:nth-child(2) {
   display: flex;
@@ -239,4 +239,3 @@ body {
     flex-direction: row-reverse;
   }
 }
-
