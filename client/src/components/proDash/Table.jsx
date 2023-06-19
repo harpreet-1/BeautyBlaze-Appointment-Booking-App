@@ -6,6 +6,7 @@ export default function Table() {
     const [fetchedData, setFetchedData] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
     const [detail, setDetail] = useState(null)
+    const [loading, setloading] = useState(true)
 
     const toggleDetails = (index) => {
         if(index!=selectedRow){
@@ -33,9 +34,6 @@ export default function Table() {
             .catch((err) => console.log(err))
     }
 
-    function handleDelete(e, index){
-        
-    }
 
     useEffect(() => {
         fetch(`http://localhost:7700/appointment/`)
@@ -43,12 +41,16 @@ export default function Table() {
             .then((data) => {
                 // console.log(data.appointments)
                 setFetchedData(data.appointments)
+                setloading(false)
             })
             .catch((err) => console.log(err))
     }, [])
 
     return (
         <div className="table">
+            {
+                loading ?
+            
             <table>
                 <thead>
                     <tr>
@@ -60,7 +62,7 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    {  
                         fetchedData.map((el, index) => {
 
                             return (
@@ -70,7 +72,7 @@ export default function Table() {
                                         <td>{el.date.substring(0, 10)}</td>
                                         <td>{el.time}</td>
                                         <td>{el.service ? el.service.name: "facial"}</td>
-                                        <div className={el.status} id="statusBox"><td>{el.status}</td></div>
+                                        <td><div className={el.status} id="statusBox">{el.status}</div></td>
                                         <td><button id={el._id} onClick={(e) => { toggleDetails(index) }}>{selectedRow === index ? "Hide" : "Show"}</button></td>
                                     </tr>
 
@@ -88,7 +90,7 @@ export default function Table() {
                                                         <option value="pending">pending</option>
                                                         <option value="cancelled">cancelled</option>
                                                     </select>
-                                                    <button onClick={(e)=>handleDelete(e, index)}>Delete</button>
+                                                    <button>Delete</button>
                                     
                                                 </div>
                                             </td>
@@ -97,10 +99,12 @@ export default function Table() {
                                 </React.Fragment>
 
                             )
-                        })
+                        }) 
                     }
                 </tbody>
-            </table>
+            </table>  : <h1>No Appointments</h1>
+
+            }
         </div>
     )
 }
