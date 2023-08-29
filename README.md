@@ -33,11 +33,15 @@ Frontend deployed - https://beautyblaze.netlify.app/
 Backend deployed - https://pear-splendid-bee.cyclic.app/
 Our Team Members ❤️
 Harpreet Singh : Team Lead
+
 Khemchand 
+
 Rahul Raman
+
 Jivak Sute
+
 Vishal Patil
 
-## Technology we used....🔧 - React JavaScript - Node JS - Express JS - MongoDB -
+ Technology we used....🔧 - React JavaScript - Node JS - Express JS - MongoDB -
 
-## API Endpoint - /login/  - /signup/ - /services/ - /book - professionalDash -  
+ API Endpoint - /login/  - /signup/ - /services/ - /book - professionalDash -  
