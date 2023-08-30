@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LoginComponent from "../components/login/LoginComponent";
-import SuccessToast from "../components/toast/SuccessToast";
 
 const Login = () => {
   const [userData, setUserData] = useState({
