@@ -239,3 +239,46 @@ body {
     flex-direction: row-reverse;
   }
 }
+.LinkTag {
+  color: black;
+  text-decoration: none;
+  /* padding-right: 5px; */
+  /* margin-right: 5px; */
+  font-weight: 600;
+}
+.navbar {
+  /* width: 100%; */
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.navlinkss {
+  color: #00a3ad;
+  margin: 0 10px;
+}
+.navlinkss:hover {
+  text-decoration: underline;
+}
+.loginbtn {
+  border: 1px solid grey;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.loginbtn:hover {
+  background-color: #00a4ad7e;
+}
+.usernamenav {
+  margin: 0 20px;
+  border: 1px solid grey;
+  padding: 5px 20px;
+  border-radius: 4px;
+  /* border: 1px solid red; */
+}
+.usernamenav:hover {
+  margin: 0 20px;
+  border: 1px solid red;
+  padding: 5px 20px;
+  border-radius: 4px;
+  color: red;
+}

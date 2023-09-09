@@ -6,6 +6,7 @@ import "../../Styling/navbar.css";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  let username = JSON.parse(localStorage.getItem("username")) || null;
   const navigation = useNavigate();
 
   const handleKeyPress = (event) => {
@@ -35,14 +36,22 @@ const Navbar = () => {
         </div>
         <div>
           <ul>
-            <li className="icon-align ">
-              <RxAvatar />
-              <Link to="/login">login</Link>
-            </li>
-            <li className="icon-align ">
-              <FaUserPlus />
-              <Link to="/signup">signup</Link>
-            </li>
+            {" "}
+            {!username ? (
+              <>
+                {" "}
+                <li className="icon-align ">
+                  <RxAvatar />
+                  <Link to="/login">login</Link>
+                </li>
+                <li className="icon-align ">
+                  <FaUserPlus />
+                  <Link to="/signup">signup</Link>
+                </li>
+              </>
+            ) : (
+              username
+            )}
             <li>
               <Link to="/professional" className="professional-btn">
                 LIST YOUR BUSINESS

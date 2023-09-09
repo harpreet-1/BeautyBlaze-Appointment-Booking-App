@@ -9,6 +9,7 @@ import Single from "./pages/Single";
 import Services from "./pages/Services";
 import ProfessionalDash from "./pages/ProfessionalDash";
 import Professional from "./pages/Professional";
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <>

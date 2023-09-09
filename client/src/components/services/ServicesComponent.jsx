@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../Styling/services/services.css";
 import { useSearchParams } from "react-router-dom";
 const url = "https://pear-splendid-bee.cyclic.app/services/";
+// const url = "http://localhost:8000/services/";
 import { useNavigate } from "react-router-dom";
 
 function ServicesComponent() {

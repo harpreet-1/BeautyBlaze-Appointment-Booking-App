@@ -2,12 +2,13 @@ import { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ErrorToast from "../toast/ErrorToast";
 import SuccessToast from "../toast/SuccessToast";
-import { signup } from "../../../db";
+
 const url = "https://pear-splendid-bee.cyclic.app/users/register";
 function SignupComponent({ userData, setUserData }) {
+  const navigation = useNavigate();
   const [showPasswordOne, setShowPasswordOne] = useState(false);
   const [showPasswordTwo, setShowPasswordTwo] = useState(false);
   const [passwordMismatch, setPasswordMismatch] = useState(false);
@@ -37,10 +38,23 @@ function SignupComponent({ userData, setUserData }) {
     } else {
       try {
         const { confirmPassword, ...actualData } = userData;
-        const data = await signup(url, actualData);
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(userData),
+        });
+        const data = await response.json();
+
         console.log(data);
         if (data.message.includes("registered successfully")) {
           setSuccess(true);
+          setTimeout(() => {
+            navigation("/login");
+          }, 2000);
         } else if (data.message.includes("Email already registered")) {
           setIfUserExists(true);
         }
@@ -57,9 +71,10 @@ function SignupComponent({ userData, setUserData }) {
       <div className="form login">
         <div className="form-content">
           <header>Create an Account</header>
-          <form action="#">
+          <form onSubmit={(e) => handleSignup(e)} action="#">
             <div className="field input-field">
               <input
+                required
                 type="text"
                 placeholder="name"
                 className="input"
@@ -69,6 +84,7 @@ function SignupComponent({ userData, setUserData }) {
             </div>
             <div className="field input-field">
               <input
+                required
                 type="email"
                 placeholder="Email"
                 className="input"
@@ -78,6 +94,7 @@ function SignupComponent({ userData, setUserData }) {
             </div>
             <div className="field input-field">
               <input
+                required
                 type={showPasswordOne ? "text" : "password"}
                 placeholder="Create password"
                 className="password"
@@ -100,6 +117,7 @@ function SignupComponent({ userData, setUserData }) {
             </div>
             <div className="field input-field">
               <input
+                required
                 type={showPasswordTwo ? "text" : "password"}
                 placeholder="Confirm password"
                 className="password"
@@ -122,7 +140,7 @@ function SignupComponent({ userData, setUserData }) {
             </div>
 
             <div className="field button-field">
-              <button onClick={(e) => handleSignup(e)}>Signup</button>
+              <button>Signup</button>
             </div>
           </form>
           <div className="form-link">

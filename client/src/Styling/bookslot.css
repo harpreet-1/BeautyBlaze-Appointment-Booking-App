@@ -1,0 +1,22 @@
+.bookingForm {
+  padding: 25px;
+  width: 400px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.bookingForm input,
+.bookingForm select {
+  margin-bottom: 20px;
+}
+.bookingForm input[type="submit"] {
+  background: rgb(122, 160, 177);
+  font-size: large;
+  font-weight: 600;
+}
+.bookheading {
+  text-align: center;
+  margin-top: 50px;
+}
